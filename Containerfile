@@ -11,6 +11,14 @@ RUN apt update -y \
     && apt install -y \
     sudo \
     vim \
-    zsh \
-    apt cleal all \
+    zsh
 
+COPY --chown=root:root vimrc /root/.vimrc
+
+ARG USERNAME=ubuntu
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+# Change to user
+USER $USERNAME
+WORKDIR /home/$USERNAME
