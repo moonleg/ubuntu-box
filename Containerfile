@@ -6,15 +6,21 @@ LABEL project="toolbox" \
       maintainer="yourname@example.com" \
       version="1.0"
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install -yq --no-install-recommends \
     sudo \
     vim \
-    vim-tiny \
-    vim-runtime \
-    vim-common \
-    man-db \
+ #   vim-tiny \
+ #   vim-runtime \
+ #   vim-common \
+ #   man-db \
+    wget \
+    curl \
+    tar \
+    gzip \
     zsh \
     locales \
     && locale-gen en_US.UTF-8 \
@@ -24,7 +30,6 @@ RUN apt-get update -y \
 
 COPY --chown=root:root vimrc /root/.vimrc
 
-ARG DEBIAN_FRONTEND=noninteractive
 ARG USERNAME=ubuntu
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
