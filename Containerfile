@@ -8,7 +8,8 @@ LABEL project="toolbox" \
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -y \
+RUN rm /etc/dpkg/dpkg.cfg.d/excludes \
+    && apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install -yq --no-install-recommends \
     sudo \
